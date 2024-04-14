@@ -1,0 +1,50 @@
+<div class="container">
+    <!-- Left side form to add users -->
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Add User</h2>
+        <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Enter name">
+          </div>
+          <div class="form-group">
+            <label for="mobileNumber">Mobile Number</label>
+            <input type="text" class="form-control" id="mobileNumber" formControlName="mobileNumber"
+              placeholder="Enter mobile number">
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Enter email">
+          </div>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+      <!-- Right side table to display users -->
+      <div class="col-md-6">
+        <h2>User List</h2>
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>Name</th>
+              <th>Mobile Number</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; let i = index" [class.table-info]="i % 2 === 0">
+              <td>{{ user.name }}</td>
+              <td>{{ user.mobileNumber }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                <button class="btn btn-primary btn-sm mr-2" (click)="editUser(user)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteUser(user)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
